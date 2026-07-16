@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Azur Society — conciergerie et gestion locative de villas à Mougins, Cannes et alentours. Location saisonnière (commission 20 %, sans frais fixes), intendance de résidence secondaire, entretien piscine et jardin. Estimation gratuite.">
+<meta property="og:title" content="Azur Society — Gestion privée de propriétés · Mougins & Cannes">
+<meta property="og:description" content="Conciergerie de villas à Mougins et autour de Cannes : location saisonnière, intendance, piscine et jardin. Consultation privée gratuite.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/hero.jpg">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Azur Society — Gestion privée de propriétés · Mougins & Cannes</title>
+<style>
+  :root {
+    --bg: #FBFBF9;
+    --surface: #F1F4F4;
+    --ink: #0F2334;
+    --muted: #5C6E7C;
+    --azure: #1E6E9F;
+    --navy: #123A54;
+    --navy-deep: #0D2C41;
+    --on-navy: #EAF1F5;
+    --gold: #B5924C;
+    --line: #DEE4E6;
+    --shadow: 0 1px 3px rgba(15,35,52,.07), 0 16px 40px rgba(15,35,52,.09);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0B1A26; --surface: #112433; --ink: #EAEFF2; --muted: #93A6B3;
+      --azure: #6CB2D9; --navy: #0F2E45; --navy-deep: #0A2233; --on-navy: #EAF1F5;
+      --gold: #CDA55F; --line: #22384A;
+      --shadow: 0 1px 3px rgba(0,0,0,.35), 0 16px 40px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B1A26; --surface: #112433; --ink: #EAEFF2; --muted: #93A6B3;
+    --azure: #6CB2D9; --navy: #0F2E45; --navy-deep: #0A2233; --on-navy: #EAF1F5;
+    --gold: #CDA55F; --line: #22384A;
+    --shadow: 0 1px 3px rgba(0,0,0,.35), 0 16px 40px rgba(0,0,0,.4);
+  }
+  :root[data-theme="light"] {
+    --bg: #FBFBF9; --surface: #F1F4F4; --ink: #0F2334; --muted: #5C6E7C;
+    --azure: #1E6E9F; --navy: #123A54; --navy-deep: #0D2C41; --on-navy: #EAF1F5;
+    --gold: #B5924C; --line: #DEE4E6;
+    --shadow: 0 1px 3px rgba(15,35,52,.07), 0 16px 40px rgba(15,35,52,.09);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Avenir Next", "Optima", "Gill Sans", "Segoe UI", sans-serif;
+    font-size: 16.5px; line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .display {
+    font-family: "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
+    font-weight: 200; line-height: 1.22; margin: 0; text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  h3 { font-weight: 300; }
+  a { color: var(--azure); text-decoration: none; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid var(--gold); outline-offset: 3px;
+  }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin: 0 0 18px;
+  }
+  section { padding: 96px 0; }
+  .lede { font-size: 19px; color: var(--muted); max-width: 36em; font-weight: 400; }
+
+  /* Bilingue : le français est la langue par défaut */
+  .en { display: none; }
+  body[data-lang="en"] .en { display: inline; }
+  body[data-lang="en"] .fr { display: none; }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    * { animation: none !important; }
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 60;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 15px 28px; max-width: 1120px; margin: 0 auto; gap: 18px; }
+  .brand { display: flex; align-items: center; gap: 12px; color: var(--ink); }
+  .wordmark { display: flex; flex-direction: column; line-height: 1.15; }
+  .wordmark .name {
+    font-size: 15.5px; letter-spacing: .26em; text-transform: uppercase; font-weight: 500;
+  }
+  .wordmark .sub { font-size: 9.5px; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
+  .nav-links { display: flex; gap: 30px; align-items: center; }
+  .nav-links a {
+    color: var(--ink); font-size: 12.5px; letter-spacing: .14em;
+    text-transform: uppercase; white-space: nowrap; font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--azure); }
+  .nav-links a.btn { color: var(--on-navy); padding: 11px 24px; font-size: 12.5px; font-weight: 500; }
+  .nav-links a.btn:hover { color: #fff; }
+  .lang { display: flex; gap: 2px; align-items: center; font-size: 13px; color: var(--muted); }
+  .lang button {
+    background: none; border: none; color: var(--muted); cursor: pointer;
+    font: inherit; letter-spacing: .1em; padding: 2px 5px; border-bottom: 1px solid transparent;
+  }
+  .lang button.active { color: var(--ink); border-bottom-color: var(--gold); }
+  .btn {
+    display: inline-block; background: var(--navy); color: var(--on-navy);
+    padding: 13px 30px; border: 1px solid var(--navy); border-radius: 1px;
+    font-family: inherit; font-size: 14.5px; letter-spacing: .08em; text-transform: uppercase;
+    cursor: pointer; transition: background .18s ease, color .18s ease;
+  }
+  .btn:hover { background: var(--azure); border-color: var(--azure); color: #fff; }
+  .btn.gold { background: var(--gold); border-color: var(--gold); color: #14202B; }
+  .btn.gold:hover { background: color-mix(in srgb, var(--gold) 85%, white); }
+  .btn.ghost { background: transparent; color: var(--on-navy); border-color: color-mix(in srgb, var(--on-navy) 55%, transparent); }
+  .btn.ghost:hover { border-color: var(--on-navy); background: transparent; }
+  @media (max-width: 820px) { .nav-links a:not(.btn) { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; min-height: 88vh; display: flex; align-items: flex-end;
+    padding: 0; overflow: hidden;
+  }
+  .hero-bg { position: absolute; inset: 0; }
+  .hero-bg img, .hero-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  @media (prefers-reduced-motion: reduce) { .hero-bg video { display: none; } }
+  .hero-bg::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(13,30,44,.42) 0%, rgba(13,30,44,.25) 40%, rgba(11,26,38,.88) 100%);
+  }
+  .hero-content { position: relative; z-index: 1; width: 100%; max-width: 1120px; margin: 0 auto; padding: 140px 28px 88px; color: #F4F8FA; }
+  .hero .eyebrow { color: #D8BE85; }
+  .hero h1 { font-size: clamp(40px, 5.6vw, 68px); color: #FFFFFF; max-width: 14em; font-weight: 200; }
+  .hero p.sub { font-size: 19px; max-width: 36em; margin: 26px 0 40px; color: rgba(244,248,250,.88); }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero-foot { margin-top: 56px; padding-top: 22px; border-top: 1px solid rgba(244,248,250,.25); display: flex; gap: 40px; flex-wrap: wrap; font-size: 13.5px; letter-spacing: .06em; color: rgba(244,248,250,.75); }
+
+  /* ---------- Manifeste ---------- */
+  .manifeste { padding-top: 150px; }
+  .intro-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 72px; align-items: start; }
+  @media (max-width: 860px) { .intro-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .intro-grid h2 { font-size: clamp(28px, 3.6vw, 40px); }
+  .intro-grid .col p { color: var(--muted); margin: 0 0 18px; }
+
+  /* ---------- Chiffres (dans la section services) ---------- */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 64px; }
+  @media (max-width: 760px) { .stats { grid-template-columns: 1fr 1fr; } }
+  .stat { background: var(--bg); padding: 30px 26px; }
+  .stat .n {
+    font-size: 38px; color: var(--azure); font-variant-numeric: tabular-nums;
+    line-height: 1; font-weight: 200; letter-spacing: -0.01em;
+  }
+  .stat .l { font-size: 13.5px; color: var(--muted); margin-top: 12px; line-height: 1.5; }
+
+  /* ---------- Services ---------- */
+  .services { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .section-head { max-width: 42em; }
+  .section-head h2 { font-size: clamp(28px, 3.6vw, 40px); margin-bottom: 16px; }
+  .svc-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  @media (max-width: 860px) { .svc-cards { grid-template-columns: 1fr; } }
+  .svc-card { background: var(--bg); border: 1px solid var(--line); box-shadow: var(--shadow); display: flex; flex-direction: column; }
+  .svc-card .ph { aspect-ratio: 4 / 2.7; overflow: hidden; }
+  .svc-card .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+  .svc-card:hover .ph img { transform: scale(1.04); }
+  .svc-card .body { padding: 30px 28px 28px; display: flex; flex-direction: column; flex: 1; }
+  .svc-card h3 { font-size: 23px; font-weight: 400; }
+  .svc-card .cond { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin: 8px 0 16px; font-weight: 600; }
+  .svc-card p.desc { font-size: 15.5px; color: var(--muted); margin: 0 0 20px; }
+  .svc-card ul { list-style: none; margin: 0 0 26px; padding: 0; display: grid; gap: 9px; }
+  .svc-card li { font-size: 14.5px; padding-left: 20px; position: relative; }
+  .svc-card li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 1.5px; background: var(--gold); }
+  .svc-card .link { margin-top: auto; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; }
+  .svc-card .link::after { content: " →"; }
+
+  /* ---------- Bande mer ---------- */
+  .sea {
+    position: relative; padding: 130px 0; overflow: hidden;
+    background-image: linear-gradient(rgba(13,35,52,.72), rgba(13,35,52,.72)), url("assets/mer.jpg");
+    background-size: cover; background-position: center 65%;
+    color: #F4F8FA; text-align: center;
+  }
+  .sea h2 { font-size: clamp(28px, 4vw, 46px); max-width: 22em; margin: 0 auto 18px; color: #fff; }
+  .sea p { max-width: 42em; margin: 0 auto 36px; color: rgba(244,248,250,.85); font-size: 18px; }
+
+  /* ---------- Histoire ---------- */
+  .histoire { text-align: center; }
+  .histoire .inner { max-width: 46em; margin: 0 auto; }
+  .histoire h2 { font-size: clamp(26px, 3.4vw, 38px); margin-bottom: 30px; }
+  .histoire p { color: var(--muted); font-size: 17px; text-align: left; margin: 0 0 18px; }
+  .histoire .sign { font-style: italic; font-size: 17px; color: var(--ink); margin-top: 30px; font-weight: 300; letter-spacing: .04em; }
+
+  /* ---------- Engagements ---------- */
+  .eng-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 64px; align-items: center; }
+  @media (max-width: 860px) { .eng-grid { grid-template-columns: 1fr; } }
+  .eng-grid .ph { border: 1px solid var(--line); box-shadow: var(--shadow); }
+  .eng-grid h2 { font-size: clamp(26px, 3.4vw, 38px); }
+  .eng-list { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 0; }
+  .eng-list li { padding: 22px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 44px 1fr; gap: 18px; align-items: start; }
+  .eng-list li:last-child { border-bottom: 1px solid var(--line); }
+  .eng-list .k { font-size: 20px; color: var(--gold); font-weight: 300; font-variant-numeric: tabular-nums; }
+  .eng-list h3 { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+  .eng-list p { margin: 0; font-size: 15px; color: var(--muted); }
+
+  /* ---------- Simulateur ---------- */
+  .simu { background: var(--navy-deep); color: var(--on-navy); }
+  .simu .eyebrow { color: var(--gold); }
+  .simu h2 { color: #fff; font-size: clamp(28px, 3.6vw, 40px); margin-bottom: 14px; }
+  .simu .lede { color: color-mix(in srgb, var(--on-navy) 75%, transparent); }
+  .simu-box { display: grid; grid-template-columns: 1.1fr .9fr; margin-top: 52px; border: 1px solid color-mix(in srgb, var(--on-navy) 22%, transparent); }
+  @media (max-width: 760px) { .simu-box { grid-template-columns: 1fr; } }
+  .simu-inputs { padding: 42px 40px; display: grid; gap: 30px; align-content: start; }
+  .simu-inputs label { display: grid; gap: 12px; font-size: 15px; }
+  .simu-inputs .val { color: var(--gold); font-variant-numeric: tabular-nums; font-weight: 600; }
+  input[type="range"] { accent-color: var(--gold); width: 100%; }
+  .simu-note { font-size: 13px; color: color-mix(in srgb, var(--on-navy) 65%, transparent); }
+  .simu-out { background: color-mix(in srgb, var(--navy) 70%, black); padding: 42px 40px; display: grid; gap: 4px; align-content: center; }
+  .simu-out .row { display: flex; justify-content: space-between; gap: 16px; font-size: 15px; padding: 9px 0; border-bottom: 1px solid color-mix(in srgb, var(--on-navy) 14%, transparent); }
+  .simu-out .row span:last-child { font-variant-numeric: tabular-nums; }
+  .simu-out .net { border: none; padding-top: 20px; align-items: baseline; }
+  .simu-out .net span:last-child { font-size: 36px; color: var(--gold); font-weight: 200; }
+
+  /* ---------- Processus ---------- */
+  .steps { counter-reset: step; display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px; margin-top: 56px; }
+  @media (max-width: 860px) { .steps { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+  .step { counter-increment: step; border-top: 2px solid var(--gold); padding-top: 20px; }
+  .step::before {
+    content: counter(step, decimal-leading-zero);
+    font-size: 14px; letter-spacing: .22em; color: var(--gold);
+    display: block; margin-bottom: 12px; font-weight: 400;
+  }
+  .step h3 { font-size: 20px; margin-bottom: 8px; font-weight: 400; }
+  .step p { margin: 0; font-size: 14.5px; color: var(--muted); }
+
+  /* ---------- Zone + FAQ ---------- */
+  .zone-faq { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .zf-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 72px; }
+  @media (max-width: 860px) { .zf-grid { grid-template-columns: 1fr; } }
+  .zf-grid h2 { font-size: clamp(26px, 3.2vw, 36px); margin-bottom: 8px; }
+  .communes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .communes span { border: 1px solid var(--line); background: var(--bg); padding: 8px 18px; font-size: 14.5px; letter-spacing: .02em; }
+  .communes span.main { border-color: var(--gold); color: var(--gold); font-weight: 600; }
+  .zone-note { font-size: 14px; color: var(--muted); margin-top: 24px; max-width: 26em; }
+  details { border-bottom: 1px solid var(--line); }
+  details summary {
+    cursor: pointer; padding: 20px 0; font-size: 17px; font-weight: 500;
+    list-style: none; display: flex; justify-content: space-between; gap: 20px; align-items: baseline;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content: "+"; color: var(--gold); font-size: 22px; flex-shrink: 0; font-weight: 300; }
+  details[open] summary::after { content: "–"; }
+  details p { margin: 0 0 22px; color: var(--muted); font-size: 15.5px; max-width: 44em; }
+  .faq-list { border-top: 1px solid var(--line); margin-top: 8px; }
+
+  /* ---------- Contact ---------- */
+  .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 72px; margin-top: 52px; }
+  @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+  form { display: grid; gap: 18px; }
+  .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 560px) { .frow { grid-template-columns: 1fr; } }
+  .field { display: grid; gap: 8px; }
+  .field label { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+    background: var(--bg); border: 1px solid var(--line); color: var(--ink);
+    padding: 14px 15px; font-family: inherit; font-size: 16px; border-radius: 1px; width: 100%;
+  }
+  textarea { resize: vertical; min-height: 120px; }
+  .contact-side p { color: var(--muted); font-size: 15.5px; }
+  .contact-side .big { font-size: 23px; color: var(--ink); margin: 2px 0 26px; font-weight: 300; letter-spacing: .01em; }
+  .form-status { font-size: 13.5px; color: var(--muted); }
+
+  /* ---------- Footer ---------- */
+  footer { background: var(--navy-deep); color: color-mix(in srgb, var(--on-navy) 70%, transparent); padding: 56px 0; }
+  .foot { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+  footer .name { font-size: 15px; letter-spacing: .26em; text-transform: uppercase; color: var(--on-navy); font-weight: 500; }
+  footer p { font-size: 13px; margin: 6px 0; }
+</style>
+</head>
+<body>
+
+
+<header>
+  <nav class="nav" aria-label="Navigation principale">
+    <a class="brand" href="#top" aria-label="Azur Society, retour en haut">
+      <svg width="40" height="36" viewBox="0 0 180 160" aria-hidden="true">
+        <path d="M 30 66 L 90 30 L 150 66" fill="none" stroke="var(--gold)" stroke-width="8" stroke-linejoin="round"/>
+        <text x="76" y="122" font-family="Didot, 'Bodoni 72', Georgia, serif" font-size="48" fill="var(--ink)" text-anchor="middle" font-style="italic">A</text>
+        <text x="103" y="128" font-family="Didot, 'Bodoni 72', Georgia, serif" font-size="48" fill="var(--azure)" text-anchor="middle" font-style="italic">S</text>
+        <line x1="58" y1="144" x2="122" y2="144" stroke="var(--azure)" stroke-width="7"/>
+      </svg>
+      <span class="wordmark">
+        <span class="name">Azur Society</span>
+        <span class="sub"><span class="fr">Gestion privée de propriétés</span><span class="en">Private property management</span></span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#services"><span class="fr">Services</span><span class="en">Services</span></a>
+      <a href="#simulateur"><span class="fr">Estimation</span><span class="en">Estimate</span></a>
+      <a href="#processus"><span class="fr">Notre approche</span><span class="en">Our approach</span></a>
+      <a href="#faq"><span class="fr">Questions</span><span class="en">FAQ</span></a>
+      <a class="btn" href="#contact"><span class="fr">Nous contacter</span><span class="en">Contact us</span></a>
+    </div>
+    <div class="lang" role="group" aria-label="Langue / Language">
+      <button type="button" id="lang-fr" class="active">FR</button>
+      <span aria-hidden="true">·</span>
+      <button type="button" id="lang-en">EN</button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <img src="assets/hero.jpg" alt="">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="assets/villa-pool.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-content">
+      <p class="eyebrow"><span class="fr">Conciergerie privée — Mougins · Cannes · Côte d'Azur</span><span class="en">Private concierge — Mougins · Cannes · French Riviera</span></p>
+      <h1><span class="fr">L'art de veiller sur votre propriété.</span><span class="en">The art of looking after your property.</span></h1>
+      <p class="sub"><span class="fr">Azur Society prend en charge la location saisonnière, l'intendance et l'entretien des propriétés de Mougins, Cannes et leurs environs. Une exigence hôtelière, un interlocuteur unique, une transparence totale.</span><span class="en">Azur Society manages seasonal rentals, caretaking and maintenance for properties in Mougins, Cannes and the surrounding hills. Hotel-grade standards, a single point of contact, complete transparency.</span></p>
+      <div class="hero-ctas">
+        <a class="btn gold" href="#contact"><span class="fr">Demander une consultation privée</span><span class="en">Request a private consultation</span></a>
+        <a class="btn ghost" href="#simulateur"><span class="fr">Estimer le potentiel locatif</span><span class="en">Estimate your rental income</span></a>
+      </div>
+      <div class="hero-foot">
+        <span><span class="fr">Présence locale 7 j/7</span><span class="en">Local presence, 7 days a week</span></span>
+        <span><span class="fr">Revenus versés en direct aux propriétaires</span><span class="en">Rental income paid directly to owners</span></span>
+        <span><span class="fr">Portefeuille volontairement limité</span><span class="en">A deliberately limited portfolio</span></span>
+        <span>Français · English</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTE -->
+  <section class="wrap manifeste reveal">
+    <div class="intro-grid">
+      <div>
+        <p class="eyebrow"><span class="fr">La maison</span><span class="en">The house</span></p>
+        <h2><span class="fr">Une propriété sur la Côte d'Azur est un privilège. Elle ne devrait jamais devenir une charge.</span><span class="en">A property on the French Riviera is a privilege. It should never become a burden.</span></h2>
+      </div>
+      <div class="col">
+        <p><span class="fr">Entre deux séjours, une maison vit : un portail qui grince, une piscine qui verdit, un orage qui passe, un voyageur qui arrive en avance. À distance, chaque détail devient une préoccupation.</span><span class="en">Between two stays, a house lives on: a creaking gate, a pool turning green, a passing storm, a guest arriving early. From a distance, every detail becomes a worry.</span></p>
+        <p><span class="fr">Azur Society a été fondée à Mougins avec une conviction simple : les propriétés de caractère de notre région méritent un niveau de service que l'on croit réservé aux domaines d'exception. Nous l'apportons aux belles maisons — avec rigueur, discrétion et un ancrage local réel.</span><span class="en">Azur Society was founded in Mougins on a simple conviction: the characterful homes of our region deserve a level of service usually thought to be reserved for exceptional estates. We bring it to beautiful houses — with rigour, discretion and genuine local roots.</span></p>
+        <p><span class="fr">Chaque propriété est suivie par un interlocuteur dédié, documentée à chaque intervention, et gérée dans un cadre contractuel limpide.</span><span class="en">Every property is looked after by a dedicated point of contact, documented at every intervention, and managed under a crystal-clear contract.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow"><span class="fr">Nos services</span><span class="en">Our services</span></p>
+        <h2><span class="fr">Trois niveaux d'accompagnement, un même standard</span><span class="en">Three levels of care, one same standard</span></h2>
+        <p class="lede"><span class="fr">Chaque collaboration débute par une visite privée de votre propriété et une proposition écrite, précise et sans engagement.</span><span class="en">Every collaboration begins with a private visit of your property and a written, precise, no-obligation proposal.</span></p>
+      </div>
+      <div class="svc-cards">
+        <article class="svc-card reveal">
+          <div class="ph"><img src="assets/villa.jpg" alt=""></div>
+          <div class="body">
+            <h3><span class="fr">Gestion locative saisonnière</span><span class="en">Seasonal rental management</span></h3>
+            <p class="cond"><span class="fr">Commission de 20 % — sans frais fixes</span><span class="en">20% commission — no fixed fees</span></p>
+            <p class="desc"><span class="fr">Nous valorisons votre propriété en location courte durée et en assurons l'exploitation complète, du premier contact au départ des voyageurs.</span><span class="en">We market your property for short stays and handle the entire operation, from first enquiry to guest departure.</span></p>
+            <ul>
+              <li><span class="fr">Photographies professionnelles et annonce soignée</span><span class="en">Professional photography and a polished listing</span></li>
+              <li><span class="fr">Diffusion multi-plateformes et tarification dynamique</span><span class="en">Multi-platform distribution and dynamic pricing</span></li>
+              <li><span class="fr">Accueil en personne, ménage hôtelier, linge de maison</span><span class="en">In-person welcome, hotel-grade housekeeping, fine linen</span></li>
+              <li><span class="fr">Piscine et jardin impeccables entre chaque séjour</span><span class="en">Pool and garden kept immaculate between stays</span></li>
+              <li><span class="fr">Relevé mensuel : revenus, taux d'occupation, avis</span><span class="en">Monthly statement: income, occupancy, reviews</span></li>
+            </ul>
+            <a class="link" href="#contact"><span class="fr">Faire évaluer ma propriété</span><span class="en">Have my property appraised</span></a>
+          </div>
+        </article>
+        <article class="svc-card reveal">
+          <div class="ph"><img src="assets/interieur.jpg" alt=""></div>
+          <div class="body">
+            <h3><span class="fr">Intendance de résidence</span><span class="en">Residence caretaking</span></h3>
+            <p class="cond"><span class="fr">Abonnement mensuel — dès 190 €</span><span class="en">Monthly plan — from €190</span></p>
+            <p class="desc"><span class="fr">Pour les résidences secondaires : votre maison reste habitée, surveillée et entretenue toute l'année, prête à vous recevoir.</span><span class="en">For second homes: your house stays lived-in, watched over and maintained all year round, ready to welcome you.</span></p>
+            <ul>
+              <li><span class="fr">Visites de contrôle régulières, avec compte-rendu photographique</span><span class="en">Regular inspection visits with photographic reports</span></li>
+              <li><span class="fr">Entretien de la piscine et suivi du jardin, toute l'année</span><span class="en">Pool care and garden supervision, all year round</span></li>
+              <li><span class="fr">Surveillance après intempéries, relevés, courrier</span><span class="en">Post-storm checks, meter readings, mail</span></li>
+              <li><span class="fr">Coordination et supervision des artisans</span><span class="en">Coordination and supervision of tradespeople</span></li>
+              <li><span class="fr">Préparation complète de la maison avant vos séjours</span><span class="en">Full preparation of the house before your stays</span></li>
+            </ul>
+            <a class="link" href="#contact"><span class="fr">Composer mon intendance</span><span class="en">Build my caretaking plan</span></a>
+          </div>
+        </article>
+        <article class="svc-card reveal">
+          <div class="ph"><img src="assets/hero.jpg" alt=""></div>
+          <div class="body">
+            <h3><span class="fr">Services sur mesure</span><span class="en">Bespoke services</span></h3>
+            <p class="cond"><span class="fr">Sur devis — sans abonnement</span><span class="en">On quotation — no subscription</span></p>
+            <p class="desc"><span class="fr">L'exigence d'une maison bien tenue, ponctuellement ou en complément : nous intervenons à la demande, pour vous ou vos invités.</span><span class="en">The standards of a well-kept house, occasionally or as a complement: we step in on demand, for you or your guests.</span></p>
+            <ul>
+              <li><span class="fr">Accueil de vos invités et remise de clés</span><span class="en">Guest welcome and key handover</span></li>
+              <li><span class="fr">Remise en route ou hivernage de la piscine</span><span class="en">Pool opening and winterising</span></li>
+              <li><span class="fr">Chef à domicile, courses, réservations, transferts</span><span class="en">Private chef, groceries, reservations, transfers</span></li>
+              <li><span class="fr">Suivi de chantier et présence aux rendez-vous</span><span class="en">Works supervision and attendance at appointments</span></li>
+            </ul>
+            <a class="link" href="#contact"><span class="fr">Décrire mon besoin</span><span class="en">Describe my need</span></a>
+          </div>
+        </article>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><div class="n">20 %</div><div class="l"><span class="fr">Notre seule commission, appliquée aux locations réalisées</span><span class="en">Our only commission, charged on completed rentals</span></div></div>
+        <div class="stat"><div class="n">0 €</div><div class="l"><span class="fr">De frais fixes en gestion locative : sans séjour, sans facture</span><span class="en">Fixed fees in rental management: no stay, no invoice</span></div></div>
+        <div class="stat"><div class="n">20 min</div><div class="l"><span class="fr">Rayon d'intervention maximal autour de Mougins</span><span class="en">Maximum service radius around Mougins</span></div></div>
+        <div class="stat"><div class="n">24 h</div><div class="l"><span class="fr">Délai de réponse maximal, 7 jours sur 7</span><span class="en">Maximum response time, 7 days a week</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANDE MER -->
+  <section class="sea">
+    <div class="wrap reveal">
+      <p class="eyebrow" style="color:#D8BE85;"><span class="fr">Notre engagement</span><span class="en">Our commitment</span></p>
+      <h2><span class="fr">Nous gérons chaque maison comme si ses clés étaient les nôtres.</span><span class="en">We look after every house as if its keys were our own.</span></h2>
+      <p><span class="fr">Portefeuille volontairement restreint, interventions documentées, contrats résiliables avec un simple préavis d'un mois : la confiance se construit par les actes, pas par les clauses.</span><span class="en">A deliberately small portfolio, documented interventions, contracts you can end with one month's notice: trust is built through actions, not clauses.</span></p>
+      <a class="btn gold" href="#contact"><span class="fr">Rencontrons-nous</span><span class="en">Let's meet</span></a>
+    </div>
+  </section>
+
+  <!-- HISTOIRE -->
+  <section class="histoire wrap" id="histoire">
+    <div class="inner reveal">
+      <svg width="86" height="76" viewBox="0 0 180 160" aria-hidden="true" style="margin: 0 auto 26px; display: block;">
+        <path d="M 30 66 L 90 30 L 150 66" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M 42 70 L 90 41 L 138 70" fill="none" stroke="var(--gold)" stroke-width=".7" opacity=".45"/>
+        <line x1="52" y1="82" x2="52" y2="128" stroke="var(--ink)" stroke-width="1.2"/>
+        <line x1="128" y1="82" x2="128" y2="128" stroke="var(--ink)" stroke-width="1.2"/>
+        <text x="76" y="118" font-family="Didot, 'Bodoni 72', Georgia, serif" font-size="42" fill="var(--ink)" text-anchor="middle" font-style="italic">A</text>
+        <text x="101" y="123" font-family="Didot, 'Bodoni 72', Georgia, serif" font-size="42" fill="var(--azure)" text-anchor="middle" font-style="italic">S</text>
+        <line x1="62" y1="140" x2="118" y2="140" stroke="var(--azure)" stroke-width="1.4"/>
+      </svg>
+      <p class="eyebrow"><span class="fr">Notre histoire</span><span class="en">Our story</span></p>
+      <h2><span class="fr">Azur Society est née dans une maison de famille, en bas du village de Mougins.</span><span class="en">Azur Society was born in a family home, just below the village of Mougins.</span></h2>
+      <p><span class="fr">Une belle maison, entretenue avec soin, à quelques minutes du vieux village. En des années, pas une seule proposition sérieuse d'accompagnement n'est arrivée dans sa boîte aux lettres. Les conciergeries de la région regardaient ailleurs — vers les domaines d'exception et leurs allées de cyprès.</span><span class="en">A beautiful, carefully kept house, minutes from the old village. In all those years, not one serious offer of assistance ever reached its letterbox. The region's concierge services were looking elsewhere — towards exceptional estates and their cypress-lined driveways.</span></p>
+      <p><span class="fr">C'est ce silence qui a fondé Azur Society : la conviction que les belles maisons de Mougins et du pays de Cannes méritent le niveau de service que l'on croit réservé aux palais — la rigueur, la discrétion, le compte-rendu précis, l'interlocuteur qui répond. Nous l'apportons, maison par maison, avec un portefeuille volontairement restreint et un ancrage local réel.</span><span class="en">That silence is what founded Azur Society: the conviction that the beautiful homes of Mougins and the Cannes countryside deserve the level of service usually believed to be reserved for palaces — rigour, discretion, precise reporting, someone who answers. We deliver it, house by house, with a deliberately small portfolio and genuine local roots.</span></p>
+      <p class="sign"><span class="fr">Le fondateur</span><span class="en">The founder</span></p>
+    </div>
+  </section>
+
+  <!-- ENGAGEMENTS -->
+  <section class="wrap" id="engagements">
+    <div class="eng-grid reveal">
+      <div class="ph"><img src="assets/interieur.jpg" alt=""></div>
+      <div>
+        <p class="eyebrow"><span class="fr">L'expérience propriétaire</span><span class="en">The owner experience</span></p>
+        <h2><span class="fr">Ce que nos propriétaires ne trouvent nulle part ailleurs</span><span class="en">What our owners find nowhere else</span></h2>
+        <ul class="eng-list">
+          <li><span class="k">I</span><div><h3><span class="fr">Un interlocuteur dédié</span><span class="en">A dedicated point of contact</span></h3><p><span class="fr">Une personne connaît votre maison, son histoire et vos habitudes. C'est elle qui répond, à chaque fois.</span><span class="en">One person knows your house, its history and your habits — and that is who answers, every time.</span></p></div></li>
+          <li><span class="k">II</span><div><h3><span class="fr">Vos revenus, versés en direct</span><span class="en">Your income, paid directly</span></h3><p><span class="fr">Les plateformes vous règlent directement ; notre commission est facturée ensuite. Vos fonds ne transitent jamais par un tiers.</span><span class="en">Booking platforms pay you directly; our commission is invoiced afterwards. Your funds never pass through a third party.</span></p></div></li>
+          <li><span class="k">III</span><div><h3><span class="fr">Chaque intervention documentée</span><span class="en">Every intervention documented</span></h3><p><span class="fr">Visites, ménages, réparations : tout est consigné et photographié. Vous suivez votre propriété où que vous soyez.</span><span class="en">Visits, cleanings, repairs: everything is logged and photographed. Follow your property from wherever you are.</span></p></div></li>
+          <li><span class="k">IV</span><div><h3><span class="fr">Une liberté contractuelle rare</span><span class="en">Rare contractual freedom</span></h3><p><span class="fr">Aucune exclusivité imposée, résiliation avec un mois de préavis. Nous retenons nos clients par le service rendu.</span><span class="en">No imposed exclusivity, cancellation with one month's notice. We keep our clients through the service we deliver.</span></p></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMULATEUR -->
+  <section class="simu" id="simulateur">
+    <div class="wrap reveal">
+      <p class="eyebrow"><span class="fr">Estimation</span><span class="en">Estimate</span></p>
+      <h2><span class="fr">Le potentiel locatif de votre propriété</span><span class="en">Your property's rental potential</span></h2>
+      <p class="lede"><span class="fr">À titre indicatif : à Mougins, une maison de trois chambres avec piscine se loue entre 350 et 550 € la nuit en saison. Une estimation précise et écrite vous est remise après visite.</span><span class="en">As a guide: in Mougins, a three-bedroom house with a pool rents for €350 to €550 per night in season. A precise written estimate is provided after a visit.</span></p>
+      <div class="simu-box">
+        <div class="simu-inputs">
+          <label>
+            <span><span class="fr">Prix moyen par nuit</span><span class="en">Average price per night</span> — <span class="val" id="v-prix">400 €</span></span>
+            <input type="range" id="prix" min="150" max="1200" step="10" value="400" aria-label="Prix moyen par nuit en euros">
+          </label>
+          <label>
+            <span><span class="fr">Nuits louées par an</span><span class="en">Nights rented per year</span> — <span class="val" id="v-nuits">120 nuits</span></span>
+            <input type="range" id="nuits" min="30" max="240" step="5" value="120" aria-label="Nombre de nuits louées par an">
+          </label>
+          <p class="simu-note"><span class="fr">Simulation avant fiscalité et charges de fonctionnement. Les frais de ménage sont réglés par les voyageurs et n'affectent pas vos revenus.</span><span class="en">Simulation before tax and running costs. Cleaning fees are paid by guests and do not affect your income.</span></p>
+        </div>
+        <div class="simu-out" aria-live="polite">
+          <div class="row"><span><span class="fr">Revenu locatif brut annuel</span><span class="en">Gross annual rental income</span></span><span id="o-brut">48 000 €</span></div>
+          <div class="row"><span><span class="fr">Commission Azur Society (20 %)</span><span class="en">Azur Society commission (20%)</span></span><span id="o-com">− 9 600 €</span></div>
+          <div class="row net"><span><span class="fr">Revenu net propriétaire</span><span class="en">Net owner income</span></span><span id="o-net">38 400 €</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESSUS -->
+  <section class="wrap" id="processus">
+    <div class="section-head reveal">
+      <p class="eyebrow"><span class="fr">Notre approche</span><span class="en">Our approach</span></p>
+      <h2><span class="fr">Quatre étapes, sans précipitation</span><span class="en">Four steps, no rush</span></h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <h3><span class="fr">La rencontre</span><span class="en">The meeting</span></h3>
+        <p><span class="fr">Une visite privée de votre propriété, une écoute de vos attentes, et une réponse honnête — y compris lorsque la location n'est pas dans votre intérêt.</span><span class="en">A private visit of your property, attentive listening, and an honest answer — including when renting is not in your interest.</span></p>
+      </div>
+      <div class="step">
+        <h3><span class="fr">La proposition</span><span class="en">The proposal</span></h3>
+        <p><span class="fr">Une estimation écrite du potentiel de votre bien, une formule adaptée et un contrat limpide. Vous décidez, sans relance commerciale.</span><span class="en">A written estimate of your property's potential, a suitable formula and a crystal-clear contract. You decide, with no sales chasing.</span></p>
+      </div>
+      <div class="step">
+        <h3><span class="fr">La préparation</span><span class="en">The preparation</span></h3>
+        <p><span class="fr">Photographies, inventaire, mise en beauté des équipements — et les quelques formalités administratives prises en charge pour vous, de bout en bout.</span><span class="en">Photography, inventory, equipment made guest-ready — and the few administrative formalities handled for you, end to end.</span></p>
+      </div>
+      <div class="step">
+        <h3><span class="fr">La gestion</span><span class="en">The management</span></h3>
+        <p><span class="fr">Nous prenons le relais. Vous recevez vos revenus directement et un relevé mensuel complet. Votre seule décision restante : vos dates de séjour.</span><span class="en">We take over. You receive your income directly and a full monthly statement. Your only remaining decision: your own stay dates.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZONE + FAQ -->
+  <section class="zone-faq" id="faq">
+    <div class="wrap zf-grid">
+      <div class="reveal">
+        <p class="eyebrow"><span class="fr">Zone d'intervention</span><span class="en">Service area</span></p>
+        <h2><span class="fr">Mougins, et ses environs immédiats</span><span class="en">Mougins, and its immediate surroundings</span></h2>
+        <div class="communes">
+          <span class="main">Mougins</span>
+          <span>Cannes</span>
+          <span>Le Cannet</span>
+          <span>Mouans-Sartoux</span>
+          <span>Valbonne</span>
+          <span>La Roquette-sur-Siagne</span>
+          <span>Châteauneuf-Grasse</span>
+        </div>
+        <p class="zone-note"><span class="fr">Nous limitons volontairement notre périmètre : la qualité de notre service repose sur notre capacité à être chez vous en moins de vingt minutes, toute l'année.</span><span class="en">We deliberately limit our perimeter: the quality of our service relies on being at your house within twenty minutes, all year round.</span></p>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow"><span class="fr">Questions fréquentes</span><span class="en">Frequently asked questions</span></p>
+        <h2><span class="fr">Vos questions, nos réponses</span><span class="en">Your questions, our answers</span></h2>
+        <div class="faq-list">
+          <details>
+            <summary><span class="fr">Quels types de propriétés acceptez-vous ?</span><span class="en">Which properties do you accept?</span></summary>
+            <p><span class="fr">Des maisons et villas de caractère, entretenues, avec ou sans piscine, principalement entre 800 000 € et 3 M€ de valeur. Nous étudions chaque bien individuellement lors de la visite ; notre critère est la qualité de l'expérience que la maison peut offrir, pas sa surface.</span><span class="en">Characterful, well-kept houses and villas, with or without a pool, mostly valued between €800,000 and €3M. We assess each property individually during the visit; our criterion is the quality of experience the house can offer, not its size.</span></p>
+          </details>
+          <details>
+            <summary><span class="fr">Qui perçoit les revenus des locations ?</span><span class="en">Who receives the rental income?</span></summary>
+            <p><span class="fr">Vous, directement. Les plateformes de réservation versent l'intégralité des revenus sur votre compte ; Azur Society facture ensuite sa commission de 20 %. Ce fonctionnement, plus protecteur pour vous, est au cœur de notre modèle.</span><span class="en">You do, directly. Booking platforms pay the full income into your account; Azur Society then invoices its 20% commission. This arrangement, which protects you better, is at the heart of our model.</span></p>
+          </details>
+          <details>
+            <summary><span class="fr">Pouvons-nous continuer à profiter de notre maison ?</span><span class="en">Can we still enjoy our house?</span></summary>
+            <p><span class="fr">Naturellement. Vous réservez vos propres séjours dans un calendrier partagé, sans restriction. La plupart de nos propriétaires occupent leur maison une partie de l'année et la valorisent le reste du temps.</span><span class="en">Naturally. You book your own stays in a shared calendar, without restriction. Most of our owners live in their house part of the year and let it earn for them the rest of the time.</span></p>
+          </details>
+          <details>
+            <summary><span class="fr">Comment êtes-vous couverts en cas d'incident ?</span><span class="en">How are you covered if something happens?</span></summary>
+            <p><span class="fr">Chaque séjour est adossé à un dépôt de garantie et aux garanties des plateformes. Un état des lieux photographique est réalisé à chaque arrivée et à chaque départ, et nous gérons l'intégralité des éventuelles réclamations. Azur Society est par ailleurs assurée en responsabilité civile professionnelle.</span><span class="en">Every stay is backed by a security deposit and the platforms' guarantees. A photographic inventory is carried out at each arrival and departure, and we handle any claims in full. Azur Society also carries professional liability insurance.</span></p>
+          </details>
+          <details>
+            <summary><span class="fr">Y a-t-il des démarches de mon côté ?</span><span class="en">Is there anything I need to do?</span></summary>
+            <p><span class="fr">Aucune. Les quelques formalités liées à la location de courte durée sont simples, et nous les prenons intégralement en charge pour vous — c'est inclus dans la gestion locative. Votre seul rôle : nous confier les clés.</span><span class="en">Nothing. The few formalities involved in short-term rental are simple, and we handle them entirely for you — it is included in our rental management. Your only role: handing us the keys.</span></p>
+          </details>
+          <details>
+            <summary><span class="fr">Quel engagement demandez-vous ?</span><span class="en">What commitment do you require?</span></summary>
+            <p><span class="fr">Aucun engagement de durée. Nos contrats se résilient avec un préavis d'un mois, à tout moment ; nous demandons uniquement d'honorer les séjours déjà confirmés.</span><span class="en">No minimum term. Our contracts can be ended with one month's notice, at any time; we only ask that already-confirmed stays be honoured.</span></p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="wrap" id="contact">
+    <div class="section-head reveal">
+      <p class="eyebrow">Contact</p>
+      <h2><span class="fr">Parlons de votre propriété</span><span class="en">Let's talk about your property</span></h2>
+      <p class="lede"><span class="fr">Une consultation privée d'une heure, chez vous, sans engagement. Vous recevez sous 48 heures une estimation écrite du potentiel de votre bien.</span><span class="en">A one-hour private consultation, at your home, with no obligation. Within 48 hours you receive a written estimate of your property's potential.</span></p>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-side">
+        <p class="eyebrow" style="margin-top:6px;"><span class="fr">Téléphone</span><span class="en">Phone</span></p>
+        <p class="big"><a href="tel:+33613510915" style="color:inherit;">06 13 51 09 15</a></p>
+        <p class="eyebrow">WhatsApp</p>
+        <p class="big"><a href="https://wa.me/33613510915" style="color:inherit;"><span class="fr">Message direct</span><span class="en">Direct message</span></a></p>
+        <p class="eyebrow">Email</p>
+        <p class="big"><a href="mailto:contact.azursociety@gmail.com" style="color:inherit;">contact.azursociety@gmail.com</a></p>
+        <p><span class="fr">Nous répondons personnellement à chaque demande, sous 24 heures, 7 jours sur 7 — en français ou en anglais. Vos coordonnées ne sont jamais transmises à des tiers.</span><span class="en">We personally answer every enquiry within 24 hours, 7 days a week — in French or English. Your details are never shared with third parties.</span></p>
+      </div>
+      <form id="contact-form">
+        <div class="frow">
+          <div class="field">
+            <label for="f-nom"><span class="fr">Nom</span><span class="en">Name</span></label>
+            <input type="text" id="f-nom" name="nom" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="f-tel"><span class="fr">Téléphone ou email</span><span class="en">Phone or email</span></label>
+            <input type="text" id="f-tel" name="contact" required>
+          </div>
+        </div>
+        <div class="frow">
+          <div class="field">
+            <label for="f-commune"><span class="fr">Commune de la propriété</span><span class="en">Property municipality</span></label>
+            <select id="f-commune" name="commune">
+              <option>Mougins</option>
+              <option>Cannes</option>
+              <option>Le Cannet</option>
+              <option>Mouans-Sartoux</option>
+              <option>Valbonne</option>
+              <option data-fr="Autre (à préciser)" data-en="Other (please specify)">Autre (à préciser)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-service"><span class="fr">Service envisagé</span><span class="en">Service considered</span></label>
+            <select id="f-service" name="service">
+              <option data-fr="Gestion locative saisonnière" data-en="Seasonal rental management">Gestion locative saisonnière</option>
+              <option data-fr="Intendance de résidence" data-en="Residence caretaking">Intendance de résidence</option>
+              <option data-fr="Services sur mesure" data-en="Bespoke services">Services sur mesure</option>
+              <option data-fr="Je ne sais pas encore" data-en="I don't know yet">Je ne sais pas encore</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-projet"><span class="fr">Votre propriété, votre projet</span><span class="en">Your property, your plans</span></label>
+          <textarea id="f-projet" name="projet" data-ph-fr="Ex. : maison de quatre chambres avec piscine, occupée l'été, que nous souhaiterions valoriser le reste de l'année." data-ph-en="E.g.: four-bedroom house with a pool, occupied in summer, which we would like to let for the rest of the year." placeholder="Ex. : maison de quatre chambres avec piscine, occupée l'été, que nous souhaiterions valoriser le reste de l'année."></textarea>
+        </div>
+        <button class="btn" type="submit"><span class="fr">Demander une consultation</span><span class="en">Request a consultation</span></button>
+        <p class="form-status" id="form-status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <svg width="52" height="46" viewBox="0 0 180 160" aria-hidden="true" style="margin-bottom:12px;">
+        <path d="M 30 66 L 90 30 L 150 66" fill="none" stroke="#D8BE85" stroke-width="5" stroke-linejoin="round"/>
+        <text x="76" y="122" font-family="Didot, 'Bodoni 72', Georgia, serif" font-size="46" fill="#EAF1F5" text-anchor="middle" font-style="italic">A</text>
+        <text x="102" y="127" font-family="Didot, 'Bodoni 72', Georgia, serif" font-size="46" fill="#6CB2D9" text-anchor="middle" font-style="italic">S</text>
+        <line x1="58" y1="142" x2="122" y2="142" stroke="#6CB2D9" stroke-width="4"/>
+      </svg>
+      <p class="name">Azur Society</p>
+      <p><span class="fr">Gestion privée de propriétés — Mougins · Cannes · Côte d'Azur</span><span class="en">Private property management — Mougins · Cannes · French Riviera</span></p>
+    </div>
+    <div>
+      <p><span class="fr">Immatriculation en cours · Assurance responsabilité civile professionnelle</span><span class="en">Registration in progress · Professional liability insurance</span></p>
+      <p><span class="fr">© 2026 Azur Society — Mentions légales · Politique de confidentialité</span><span class="en">© 2026 Azur Society — Legal notice · Privacy policy</span></p>
+      <p style="opacity:.7;"><span class="fr">Vidéo : Mixkit · Photos : Unsplash</span><span class="en">Video: Mixkit · Photos: Unsplash</span></p>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Azur Society",
+  "description": "Conciergerie et gestion locative de villas à Mougins, Cannes, Le Cannet, Mouans-Sartoux et Valbonne : location saisonnière (Airbnb, Booking), intendance de résidence secondaire, entretien de piscine et jardin. Commission de 20 % sans frais fixes.",
+  "url": "https://azursociety.fr",
+  "telephone": "+33613510915",
+  "email": "contact.azursociety@gmail.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Mougins", "addressRegion": "Alpes-Maritimes", "postalCode": "06250", "addressCountry": "FR" },
+  "areaServed": ["Mougins", "Cannes", "Le Cannet", "Mouans-Sartoux", "Valbonne", "La Roquette-sur-Siagne", "Châteauneuf-Grasse"],
+  "knowsLanguage": ["fr", "en"],
+  "priceRange": "€€"
+}
+</script>
+<script>
+  /* ----- Langue ----- */
+  let lang = 'fr';
+  try { lang = localStorage.getItem('azur-lang') || 'fr'; } catch (e) {}
+  const TITLES = {
+    fr: "Azur Society — Gestion privée de propriétés · Mougins & Cannes",
+    en: "Azur Society — Private property management · Mougins & Cannes"
+  };
+  function setLang(l) {
+    lang = l;
+    document.body.dataset.lang = l;
+    document.documentElement.lang = l;
+    document.title = TITLES[l];
+    document.getElementById('lang-fr').classList.toggle('active', l === 'fr');
+    document.getElementById('lang-en').classList.toggle('active', l === 'en');
+    document.querySelectorAll('option[data-fr]').forEach(o => { o.textContent = o.dataset[l]; });
+    const ta = document.getElementById('f-projet');
+    ta.placeholder = l === 'fr' ? ta.dataset.phFr : ta.dataset.phEn;
+    try { localStorage.setItem('azur-lang', l); } catch (e) {}
+    calc();
+  }
+  document.getElementById('lang-fr').addEventListener('click', () => setLang('fr'));
+  document.getElementById('lang-en').addEventListener('click', () => setLang('en'));
+
+  /* ----- Simulateur ----- */
+  const fmt = n => n.toLocaleString(lang === 'fr' ? 'fr-FR' : 'en-GB') + ' €';
+  const prix = document.getElementById('prix');
+  const nuits = document.getElementById('nuits');
+  function calc() {
+    const p = +prix.value, n = +nuits.value;
+    const brut = p * n, com = Math.round(brut * 0.20);
+    document.getElementById('v-prix').textContent = fmt(p);
+    document.getElementById('v-nuits').textContent = n + (lang === 'fr' ? ' nuits' : ' nights');
+    document.getElementById('o-brut').textContent = fmt(brut);
+    document.getElementById('o-com').textContent = '− ' + fmt(com);
+    document.getElementById('o-net').textContent = fmt(brut - com);
+  }
+  prix.addEventListener('input', calc);
+  nuits.addEventListener('input', calc);
+
+  /* ----- Formulaire ----- */
+  document.getElementById('contact-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target;
+    const subject = (lang === 'fr' ? 'Consultation privée — ' : 'Private consultation — ') + f.commune.value;
+    const body = `${lang === 'fr' ? 'Nom' : 'Name'} : ${f.nom.value}%0AContact : ${f.contact.value}%0A${lang === 'fr' ? 'Commune' : 'Municipality'} : ${f.commune.value}%0AService : ${f.service.value}%0A%0A${encodeURIComponent(f.projet.value)}`;
+    window.location.href = `mailto:contact.azursociety@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    document.getElementById('form-status').textContent = lang === 'fr'
+      ? 'Votre logiciel de messagerie s’ouvre avec votre demande pré-remplie.'
+      : 'Your email client will open with your request pre-filled.';
+  });
+
+  /* ----- Apparitions au défilement ----- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  setLang(lang);
+</script>
+
+</body>
+</html>
