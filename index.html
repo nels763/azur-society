@@ -8,6 +8,7 @@
 <meta property="og:description" content="Conciergerie de villas à Mougins et autour de Cannes : location saisonnière, intendance, piscine et jardin. Consultation privée gratuite.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/hero.jpg">
+<link rel="canonical" href="https://azursociety.fr/">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <title>Azur Society — Conciergerie de propriétés · Mougins & Cannes</title>
 <style>
@@ -718,7 +719,7 @@
         <p class="eyebrow">WhatsApp</p>
         <p class="big"><a href="https://wa.me/33613510915" style="color:inherit;"><span class="fr">Message direct</span><span class="en">Direct message</span></a></p>
         <p class="eyebrow">Email</p>
-        <p class="big"><a href="mailto:contact.azursociety@gmail.com" style="color:inherit;">contact.azursociety@gmail.com</a></p>
+        <p class="big"><a href="mailto:contact@azursociety.fr" style="color:inherit;">contact@azursociety.fr</a></p>
         <p><span class="fr">Nous répondons personnellement à chaque demande, sous 24 heures, 7 jours sur 7 — en français ou en anglais. Vos coordonnées ne sont jamais transmises à des tiers.</span><span class="en">We personally answer every enquiry within 24 hours, 7 days a week — in French or English. Your details are never shared with third parties.</span></p>
       </div>
       <form id="contact-form">
@@ -792,9 +793,9 @@
   "@type": "LocalBusiness",
   "name": "Azur Society",
   "description": "Conciergerie de villas à Mougins, Cannes, Le Cannet, Mouans-Sartoux et Valbonne : location saisonnière (Airbnb, Booking), intendance de résidence secondaire, entretien de piscine et jardin. Honoraires de 20 % sans frais fixes.",
-  "url": "https://nels763.github.io/azur-society/",
+  "url": "https://azursociety.fr",
   "telephone": "+33613510915",
-  "email": "contact.azursociety@gmail.com",
+  "email": "contact@azursociety.fr",
   "address": { "@type": "PostalAddress", "addressLocality": "Mougins", "addressRegion": "Alpes-Maritimes", "postalCode": "06250", "addressCountry": "FR" },
   "areaServed": ["Mougins", "Cannes", "Le Cannet", "Mouans-Sartoux", "Valbonne", "La Roquette-sur-Siagne", "Châteauneuf-Grasse"],
   "knowsLanguage": ["fr", "en"],
@@ -847,7 +848,7 @@
     const f = e.target;
     const subject = (lang === 'fr' ? 'Consultation privée — ' : 'Private consultation — ') + f.commune.value;
     const body = `${lang === 'fr' ? 'Nom' : 'Name'} : ${f.nom.value}%0AContact : ${f.contact.value}%0A${lang === 'fr' ? 'Commune' : 'Municipality'} : ${f.commune.value}%0AService : ${f.service.value}%0A%0A${encodeURIComponent(f.projet.value)}`;
-    window.location.href = `mailto:contact.azursociety@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    window.location.href = `mailto:contact@azursociety.fr?subject=${encodeURIComponent(subject)}&body=${body}`;
     document.getElementById('form-status').textContent = lang === 'fr'
       ? 'Votre logiciel de messagerie s’ouvre avec votre demande pré-remplie.'
       : 'Your email client will open with your request pre-filled.';
