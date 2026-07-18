@@ -374,41 +374,117 @@
   #processus { padding: 130px 0 140px; }
   #processus .steps { margin-top: 64px; gap: 48px 36px; }
 
-  /* ---------- Mobile ---------- */
+  /* ---------- Mobile (uniquement < 640px — le desktop ne change pas) ---------- */
   @media (max-width: 640px) {
-    section { padding: 64px 0; }
-    .manifeste { padding-top: 88px; }
-    #processus { padding: 84px 0 92px; }
-    #contact { padding: 84px 20px 90px; }
-    #processus .steps { margin-top: 44px; gap: 36px; }
+    section { padding: 60px 0; }
     .wrap { padding: 0 20px; }
-    .nav { padding: 12px 16px; gap: 10px; }
+    .eyebrow { font-size: 10.5px; letter-spacing: .18em; margin-bottom: 14px; }
+    .lede { font-size: 15.5px; }
+
+    /* En-tete compact */
+    .nav { padding: 10px 16px; gap: 10px; }
+    .brand svg { width: 34px; height: 30px; }
     .wordmark { display: none; }
     .nav-links { gap: 10px; }
-    .nav-links a.btn { padding: 9px 14px; font-size: 10.5px; letter-spacing: .06em; }
-    .lang { font-size: 12px; }
-    .hero { min-height: 94vh; }
-    .hero-content { padding: 110px 20px 100px; }
-    .hero h1 { font-size: clamp(34px, 9.5vw, 44px); }
-    .hero p.sub { font-size: 16px; margin: 20px auto 30px; }
-    .hero-foot { margin-top: 38px; gap: 10px 22px; font-size: 12px; }
-    .contact-side { padding: 30px 24px; }
-    .sea { padding: 88px 0; }
-    .histoire h2 { margin-bottom: 22px; }
-    .simu-inputs, .simu-out { padding: 30px 22px; }
-    .simu-out .net span:last-child { font-size: 30px; }
-    .svc-card .body { padding: 24px 20px; }
-    .stats { grid-template-columns: 1fr 1fr; margin-top: 44px; }
-    .stat { padding: 20px 16px; }
-    .stat .n { font-size: 28px; }
-    .contact-grid { gap: 44px; margin-top: 36px; }
-    .zf-grid { gap: 48px; }
-    footer { padding: 44px 0; }
-  }
-</style>
-</head>
-<body>
+    .nav-links a.btn { padding: 9px 13px; font-size: 10px; letter-spacing: .08em; }
+    .lang { font-size: 11.5px; }
 
+    /* Hero */
+    .hero { min-height: 92vh; }
+    .hero-content { padding: 96px 20px 84px; }
+    .hero .eyebrow { font-size: 9.5px; letter-spacing: .16em; line-height: 2; margin-bottom: 16px; }
+    .hero h1 { font-size: clamp(33px, 9.4vw, 42px); line-height: 1.24; }
+    .hero p.sub { font-size: 15px; line-height: 1.75; margin: 18px auto 26px; }
+    .hero-ctas { flex-direction: column; gap: 12px; align-items: stretch; }
+    .hero-ctas .btn { width: 100%; box-sizing: border-box; font-size: 11.5px; letter-spacing: .1em; padding: 16px 8px; white-space: nowrap; }
+    .hero-foot { margin-top: 30px; padding-top: 18px; gap: 6px 20px; font-size: 11px; letter-spacing: .05em; }
+    .scroll-cue { bottom: 14px; height: 42px; }
+
+    /* Manifeste */
+    .manifeste { padding-top: 96px; }
+    .intro-grid { gap: 26px; }
+    .intro-grid h2 { font-size: clamp(25px, 7vw, 30px); }
+    .intro-grid .col p { font-size: 15px; }
+
+    /* Services */
+    .section-head h2 { font-size: clamp(25px, 7vw, 30px); }
+    .svc-cards { margin-top: 36px; gap: 18px; }
+    .svc-card .body { padding: 22px 18px 20px; }
+    .svc-card h3 { font-size: 20px; }
+    .svc-card .cond { font-size: 11px; letter-spacing: .06em; margin: 6px 0 12px; }
+    .svc-card p.desc { font-size: 14.5px; margin-bottom: 16px; }
+    .svc-card li { font-size: 13.5px; }
+    .svc-card .link { font-size: 12.5px; }
+
+    /* Chiffres */
+    .stats { grid-template-columns: 1fr 1fr; margin-top: 40px; }
+    .stat { padding: 18px 14px; }
+    .stat .n { font-size: 25px; }
+    .stat .l { font-size: 12px; margin-top: 8px; }
+
+    /* Bandes photo */
+    .sea { padding: 76px 0; }
+    .sea h2 { font-size: clamp(24px, 6.8vw, 29px); }
+    .sea p { font-size: 15px; margin-bottom: 28px; }
+    .interlude { padding: 84px 0; }
+    .interlude p { font-size: clamp(19px, 5.6vw, 23px); }
+
+    /* Histoire */
+    .histoire h2 { margin-bottom: 20px; font-size: clamp(23px, 6.6vw, 28px); }
+    .histoire p { font-size: 15px; }
+    .histoire .inner > svg { width: 64px; height: 57px; }
+
+    /* Engagements */
+    .eng-grid { gap: 30px; }
+    .eng-grid h2 { font-size: clamp(24px, 6.8vw, 29px); }
+    .eng-list { margin-top: 26px; }
+    .eng-list li { padding: 16px 0; grid-template-columns: 32px 1fr; gap: 12px; }
+    .eng-list .k { font-size: 17px; }
+    .eng-list h3 { font-size: 16px; }
+    .eng-list p { font-size: 13.5px; }
+
+    /* Simulateur */
+    .simu h2 { font-size: clamp(25px, 7vw, 30px); }
+    .simu .lede { font-size: 15px; }
+    .simu-box { margin-top: 32px; }
+    .simu-inputs, .simu-out { padding: 26px 20px; }
+    .simu-inputs label { font-size: 14px; }
+    .simu-note { font-size: 11.5px; }
+    .simu-out .row { font-size: 13.5px; }
+    .simu-out .net span:last-child { font-size: 27px; }
+
+    /* Processus */
+    #processus { padding: 72px 0 80px; }
+    #processus .steps { margin-top: 36px; gap: 30px; }
+    .step { padding-top: 16px; }
+    .step h3 { font-size: 18px; }
+    .step p { font-size: 13.5px; }
+
+    /* Zone + FAQ */
+    .zf-grid { gap: 44px; }
+    .zf-grid h2 { font-size: clamp(23px, 6.6vw, 28px); }
+    .communes { margin-top: 20px; gap: 8px; }
+    .communes span { font-size: 13px; padding: 6px 14px; }
+    .zone-note { font-size: 13px; }
+    details summary { font-size: 15px; padding: 16px 0; }
+    details p { font-size: 14px; }
+
+    /* Contact */
+    #contact { padding: 72px 20px 80px; }
+    .contact-grid { gap: 36px; margin-top: 30px; }
+    .contact-side { padding: 26px 22px; }
+    .contact-side .big { font-size: 18px; margin-bottom: 18px; }
+    .contact-side p { font-size: 14px; }
+    .field label { font-size: 11px; }
+    form .btn { width: 100%; box-sizing: border-box; font-size: 12px; padding: 16px 8px; }
+
+    /* Pied de page */
+    footer { padding: 40px 0 46px; }
+    .foot { gap: 22px; }
+    footer .name { font-size: 13px; }
+    footer p { font-size: 11.5px; line-height: 1.6; }
+  }
+</style>\n</head>\n<body>\n
 
 <header>
   <nav class="nav" aria-label="Navigation principale">
@@ -881,6 +957,4 @@
 
   setLang(lang);
 </script>
-
-</body>
-</html>
+\n</body>\n</html>
