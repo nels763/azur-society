@@ -921,16 +921,44 @@
   prix.addEventListener('input', calc);
   nuits.addEventListener('input', calc);
 
-  /* ----- Formulaire ----- */
-  document.getElementById('contact-form').addEventListener('submit', e => {
+  /* ----- Formulaire : envoi direct (relais FormSubmit vers contact@azursociety.fr) ----- */
+  document.getElementById('contact-form').addEventListener('submit', async e => {
     e.preventDefault();
     const f = e.target;
-    const subject = (lang === 'fr' ? 'Consultation privée — ' : 'Private consultation — ') + f.commune.value;
-    const body = `${lang === 'fr' ? 'Nom' : 'Name'} : ${f.nom.value}%0AContact : ${f.contact.value}%0A${lang === 'fr' ? 'Commune' : 'Municipality'} : ${f.commune.value}%0AService : ${f.service.value}%0A%0A${encodeURIComponent(f.projet.value)}`;
-    window.location.href = `mailto:contact@azursociety.fr?subject=${encodeURIComponent(subject)}&body=${body}`;
-    document.getElementById('form-status').textContent = lang === 'fr'
-      ? 'Votre logiciel de messagerie s’ouvre avec votre demande pré-remplie.'
-      : 'Your email client will open with your request pre-filled.';
+    const btn = f.querySelector('button[type="submit"]');
+    const status = document.getElementById('form-status');
+    btn.disabled = true;
+    status.textContent = lang === 'fr' ? 'Envoi en cours…' : 'Sending…';
+    try {
+      const r = await fetch('https://formsubmit.co/ajax/contact@azursociety.fr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: (lang === 'fr' ? 'Consultation privée — ' : 'Private consultation — ') + f.commune.value,
+          _template: 'table',
+          _captcha: 'false',
+          Nom: f.nom.value,
+          Contact: f.contact.value,
+          Commune: f.commune.value,
+          Service: f.service.value,
+          Projet: f.projet.value
+        })
+      });
+      if (!r.ok) throw new Error('relais indisponible');
+      await r.json();
+      f.reset();
+      status.textContent = lang === 'fr'
+        ? '✓ Votre demande a bien été envoyée. Nous revenons vers vous sous 24 heures.'
+        : '✓ Your request has been sent. We will get back to you within 24 hours.';
+    } catch (err) {
+      const subject = (lang === 'fr' ? 'Consultation privée — ' : 'Private consultation — ') + f.commune.value;
+      const body = `${lang === 'fr' ? 'Nom' : 'Name'} : ${f.nom.value}%0AContact : ${f.contact.value}%0A${lang === 'fr' ? 'Commune' : 'Municipality'} : ${f.commune.value}%0AService : ${f.service.value}%0A%0A${encodeURIComponent(f.projet.value)}`;
+      window.location.href = `mailto:contact@azursociety.fr?subject=${encodeURIComponent(subject)}&body=${body}`;
+      status.textContent = lang === 'fr'
+        ? 'Le service d’envoi est momentanément indisponible — votre logiciel de messagerie prend le relais.'
+        : 'The sending service is temporarily unavailable — your email client will take over.';
+    }
+    btn.disabled = false;
   });
 
   /* ----- Header : transparent sur la vidéo, solide ensuite ----- */
