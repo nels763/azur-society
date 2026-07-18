@@ -882,6 +882,18 @@
 }
 </script>
 <script>
+  window.HERO_VIDEO_MOBILE = 'assets/villa-pool-mobile.mp4';
+  /* ----- Vidéo allégée sur mobile (définie uniquement sur la version déployée) ----- */
+  (function () {
+    const hv = document.querySelector('.hero-bg video');
+    if (hv && window.HERO_VIDEO_MOBILE && window.matchMedia('(max-width: 640px)').matches) {
+      const s = hv.querySelector('source');
+      s.src = window.HERO_VIDEO_MOBILE;
+      hv.load();
+      hv.play().catch(() => {});
+    }
+  })();
+
   /* ----- Langue ----- */
   let lang = 'fr';
   try { lang = localStorage.getItem('azur-lang') || 'fr'; } catch (e) {}
