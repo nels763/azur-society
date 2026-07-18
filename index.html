@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Azur Society — conciergerie et gestion locative de villas à Mougins, Cannes et alentours. Location saisonnière (commission 20 %, sans frais fixes), intendance de résidence secondaire, entretien piscine et jardin. Estimation gratuite.">
-<meta property="og:title" content="Azur Society — Gestion privée de propriétés · Mougins & Cannes">
+<meta name="description" content="Azur Society — conciergerie de villas à Mougins, Cannes et alentours. Location saisonnière (honoraires de 20 %, sans frais fixes), intendance de résidence secondaire, entretien piscine et jardin. Estimation gratuite.">
+<meta property="og:title" content="Azur Society — Conciergerie de propriétés · Mougins & Cannes">
 <meta property="og:description" content="Conciergerie de villas à Mougins et autour de Cannes : location saisonnière, intendance, piscine et jardin. Consultation privée gratuite.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/hero.jpg">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<title>Azur Society — Gestion privée de propriétés · Mougins & Cannes</title>
+<title>Azur Society — Conciergerie de propriétés · Mougins & Cannes</title>
 <style>
   :root {
     --bg: #FBFBF9;
@@ -97,13 +97,19 @@
   .wordmark .name {
     font-size: 15.5px; letter-spacing: .26em; text-transform: uppercase; font-weight: 500;
   }
-  .wordmark .sub { font-size: 9.5px; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
+  .wordmark .sub { font-size: 9px; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
   .nav-links { display: flex; gap: 30px; align-items: center; }
   .nav-links a {
     color: var(--ink); font-size: 12.5px; letter-spacing: .14em;
     text-transform: uppercase; white-space: nowrap; font-weight: 500;
   }
   .nav-links a:hover { color: var(--azure); }
+  .nav-links a:not(.btn) { position: relative; }
+  .nav-links a:not(.btn)::after {
+    content: ""; position: absolute; left: 0; bottom: -5px; width: 0; height: 1px;
+    background: var(--gold); transition: width .25s ease;
+  }
+  .nav-links a:not(.btn):hover::after { width: 100%; }
   .nav-links a.btn { color: var(--on-navy); padding: 11px 24px; font-size: 12.5px; font-weight: 500; }
   .nav-links a.btn:hover { color: #fff; }
   .lang { display: flex; gap: 2px; align-items: center; font-size: 13px; color: var(--muted); }
@@ -167,7 +173,12 @@
   .section-head h2 { font-size: clamp(28px, 3.6vw, 40px); margin-bottom: 16px; }
   .svc-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
   @media (max-width: 860px) { .svc-cards { grid-template-columns: 1fr; } }
-  .svc-card { background: var(--bg); border: 1px solid var(--line); box-shadow: var(--shadow); display: flex; flex-direction: column; }
+  .svc-card {
+    background: var(--bg); border: 1px solid var(--line); box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .svc-card:hover { transform: translateY(-5px); box-shadow: 0 2px 6px rgba(15,35,52,.08), 0 26px 60px rgba(15,35,52,.14); }
   .svc-card .ph { aspect-ratio: 4 / 2.7; overflow: hidden; }
   .svc-card .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
   .svc-card:hover .ph img { transform: scale(1.04); }
@@ -283,6 +294,41 @@
   .foot { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
   footer .name { font-size: 15px; letter-spacing: .26em; text-transform: uppercase; color: var(--on-navy); font-weight: 500; }
   footer p { font-size: 13px; margin: 6px 0; }
+
+  /* ---------- Espacement de la section approche ---------- */
+  #processus { padding: 130px 0 140px; }
+  #processus .steps { margin-top: 64px; gap: 48px 36px; }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 640px) {
+    section { padding: 64px 0; }
+    .manifeste { padding-top: 88px; }
+    #processus { padding: 84px 0 92px; }
+    #processus .steps { margin-top: 44px; gap: 36px; }
+    .wrap { padding: 0 20px; }
+    .nav { padding: 12px 16px; gap: 10px; }
+    .wordmark .name { font-size: 13.5px; letter-spacing: .2em; }
+    .wordmark .sub { display: none; }
+    .nav-links { gap: 10px; }
+    .nav-links a.btn { padding: 9px 14px; font-size: 10.5px; letter-spacing: .06em; }
+    .lang { font-size: 12px; }
+    .hero { min-height: 76vh; }
+    .hero-content { padding: 100px 20px 52px; }
+    .hero h1 { font-size: clamp(32px, 9vw, 42px); }
+    .hero p.sub { font-size: 16px; margin: 20px 0 30px; }
+    .hero-foot { margin-top: 38px; gap: 10px 22px; font-size: 12px; }
+    .sea { padding: 88px 0; }
+    .histoire h2 { margin-bottom: 22px; }
+    .simu-inputs, .simu-out { padding: 30px 22px; }
+    .simu-out .net span:last-child { font-size: 30px; }
+    .svc-card .body { padding: 24px 20px; }
+    .stats { grid-template-columns: 1fr 1fr; margin-top: 44px; }
+    .stat { padding: 20px 16px; }
+    .stat .n { font-size: 28px; }
+    .contact-grid { gap: 44px; margin-top: 36px; }
+    .zf-grid { gap: 48px; }
+    footer { padding: 44px 0; }
+  }
 </style>
 </head>
 <body>
@@ -299,7 +345,7 @@
       </svg>
       <span class="wordmark">
         <span class="name">Azur Society</span>
-        <span class="sub"><span class="fr">Gestion privée de propriétés</span><span class="en">Private property management</span></span>
+        <span class="sub"><span class="fr">Conciergerie &amp; intendance</span><span class="en">Concierge &amp; estate care</span></span>
       </span>
     </a>
     <div class="nav-links">
@@ -330,7 +376,7 @@
     <div class="hero-content">
       <p class="eyebrow"><span class="fr">Conciergerie privée — Mougins · Cannes · Côte d'Azur</span><span class="en">Private concierge — Mougins · Cannes · French Riviera</span></p>
       <h1><span class="fr">L'art de veiller sur votre propriété.</span><span class="en">The art of looking after your property.</span></h1>
-      <p class="sub"><span class="fr">Azur Society prend en charge la location saisonnière, l'intendance et l'entretien des propriétés de Mougins, Cannes et leurs environs. Une exigence hôtelière, un interlocuteur unique, une transparence totale.</span><span class="en">Azur Society manages seasonal rentals, caretaking and maintenance for properties in Mougins, Cannes and the surrounding hills. Hotel-grade standards, a single point of contact, complete transparency.</span></p>
+      <p class="sub"><span class="fr">Azur Society accompagne les propriétaires de Mougins, Cannes et leurs environs : location saisonnière, intendance et entretien de leur propriété. Une exigence hôtelière, un interlocuteur unique, une transparence totale.</span><span class="en">Azur Society supports property owners in Mougins, Cannes and the surrounding hills: seasonal rentals, caretaking and property upkeep. Hotel-grade standards, a single point of contact, complete transparency.</span></p>
       <div class="hero-ctas">
         <a class="btn gold" href="#contact"><span class="fr">Demander une consultation privée</span><span class="en">Request a private consultation</span></a>
         <a class="btn ghost" href="#simulateur"><span class="fr">Estimer le potentiel locatif</span><span class="en">Estimate your rental income</span></a>
@@ -371,9 +417,9 @@
         <article class="svc-card reveal">
           <div class="ph"><img src="assets/villa.jpg" alt=""></div>
           <div class="body">
-            <h3><span class="fr">Gestion locative saisonnière</span><span class="en">Seasonal rental management</span></h3>
-            <p class="cond"><span class="fr">Commission de 20 % — sans frais fixes</span><span class="en">20% commission — no fixed fees</span></p>
-            <p class="desc"><span class="fr">Nous valorisons votre propriété en location courte durée et en assurons l'exploitation complète, du premier contact au départ des voyageurs.</span><span class="en">We market your property for short stays and handle the entire operation, from first enquiry to guest departure.</span></p>
+            <h3><span class="fr">Location saisonnière</span><span class="en">Seasonal rentals</span></h3>
+            <p class="cond"><span class="fr">Honoraires de 20 % — sans frais fixes</span><span class="en">20% service fee — no fixed fees</span></p>
+            <p class="desc"><span class="fr">Nous préparons votre propriété, veillons sur chaque séjour et coordonnons l'ensemble des services — vos revenus vous sont versés directement.</span><span class="en">We prepare your property, look after every stay and coordinate every service — your income is paid to you directly.</span></p>
             <ul>
               <li><span class="fr">Photographies professionnelles et annonce soignée</span><span class="en">Professional photography and a polished listing</span></li>
               <li><span class="fr">Diffusion multi-plateformes et tarification dynamique</span><span class="en">Multi-platform distribution and dynamic pricing</span></li>
@@ -417,8 +463,8 @@
         </article>
       </div>
       <div class="stats reveal">
-        <div class="stat"><div class="n">20 %</div><div class="l"><span class="fr">Notre seule commission, appliquée aux locations réalisées</span><span class="en">Our only commission, charged on completed rentals</span></div></div>
-        <div class="stat"><div class="n">0 €</div><div class="l"><span class="fr">De frais fixes en gestion locative : sans séjour, sans facture</span><span class="en">Fixed fees in rental management: no stay, no invoice</span></div></div>
+        <div class="stat"><div class="n">20 %</div><div class="l"><span class="fr">Nos honoraires de service, sur les seules locations réalisées</span><span class="en">Our service fee, on completed rentals only</span></div></div>
+        <div class="stat"><div class="n">0 €</div><div class="l"><span class="fr">De frais fixes : sans séjour, sans facture</span><span class="en">Of fixed fees: no stay, no invoice</span></div></div>
         <div class="stat"><div class="n">20 min</div><div class="l"><span class="fr">Rayon d'intervention maximal autour de Mougins</span><span class="en">Maximum service radius around Mougins</span></div></div>
         <div class="stat"><div class="n">24 h</div><div class="l"><span class="fr">Délai de réponse maximal, 7 jours sur 7</span><span class="en">Maximum response time, 7 days a week</span></div></div>
       </div>
@@ -464,7 +510,7 @@
         <h2><span class="fr">Ce que nos propriétaires ne trouvent nulle part ailleurs</span><span class="en">What our owners find nowhere else</span></h2>
         <ul class="eng-list">
           <li><span class="k">I</span><div><h3><span class="fr">Un interlocuteur dédié</span><span class="en">A dedicated point of contact</span></h3><p><span class="fr">Une personne connaît votre maison, son histoire et vos habitudes. C'est elle qui répond, à chaque fois.</span><span class="en">One person knows your house, its history and your habits — and that is who answers, every time.</span></p></div></li>
-          <li><span class="k">II</span><div><h3><span class="fr">Vos revenus, versés en direct</span><span class="en">Your income, paid directly</span></h3><p><span class="fr">Les plateformes vous règlent directement ; notre commission est facturée ensuite. Vos fonds ne transitent jamais par un tiers.</span><span class="en">Booking platforms pay you directly; our commission is invoiced afterwards. Your funds never pass through a third party.</span></p></div></li>
+          <li><span class="k">II</span><div><h3><span class="fr">Vos revenus, versés en direct</span><span class="en">Your income, paid directly</span></h3><p><span class="fr">Les plateformes vous règlent directement ; nos honoraires sont facturés ensuite. Vos fonds ne transitent jamais par un tiers.</span><span class="en">Booking platforms pay you directly; our fee is invoiced afterwards. Your funds never pass through a third party.</span></p></div></li>
           <li><span class="k">III</span><div><h3><span class="fr">Chaque intervention documentée</span><span class="en">Every intervention documented</span></h3><p><span class="fr">Visites, ménages, réparations : tout est consigné et photographié. Vous suivez votre propriété où que vous soyez.</span><span class="en">Visits, cleanings, repairs: everything is logged and photographed. Follow your property from wherever you are.</span></p></div></li>
           <li><span class="k">IV</span><div><h3><span class="fr">Une liberté contractuelle rare</span><span class="en">Rare contractual freedom</span></h3><p><span class="fr">Aucune exclusivité imposée, résiliation avec un mois de préavis. Nous retenons nos clients par le service rendu.</span><span class="en">No imposed exclusivity, cancellation with one month's notice. We keep our clients through the service we deliver.</span></p></div></li>
         </ul>
@@ -492,7 +538,7 @@
         </div>
         <div class="simu-out" aria-live="polite">
           <div class="row"><span><span class="fr">Revenu locatif brut annuel</span><span class="en">Gross annual rental income</span></span><span id="o-brut">48 000 €</span></div>
-          <div class="row"><span><span class="fr">Commission Azur Society (20 %)</span><span class="en">Azur Society commission (20%)</span></span><span id="o-com">− 9 600 €</span></div>
+          <div class="row"><span><span class="fr">Honoraires Azur Society (20 %)</span><span class="en">Azur Society service fee (20%)</span></span><span id="o-com">− 9 600 €</span></div>
           <div class="row net"><span><span class="fr">Revenu net propriétaire</span><span class="en">Net owner income</span></span><span id="o-net">38 400 €</span></div>
         </div>
       </div>
@@ -519,7 +565,7 @@
         <p><span class="fr">Photographies, inventaire, mise en beauté des équipements — et les quelques formalités administratives prises en charge pour vous, de bout en bout.</span><span class="en">Photography, inventory, equipment made guest-ready — and the few administrative formalities handled for you, end to end.</span></p>
       </div>
       <div class="step">
-        <h3><span class="fr">La gestion</span><span class="en">The management</span></h3>
+        <h3><span class="fr">Le quotidien</span><span class="en">The day-to-day</span></h3>
         <p><span class="fr">Nous prenons le relais. Vous recevez vos revenus directement et un relevé mensuel complet. Votre seule décision restante : vos dates de séjour.</span><span class="en">We take over. You receive your income directly and a full monthly statement. Your only remaining decision: your own stay dates.</span></p>
       </div>
     </div>
@@ -552,7 +598,7 @@
           </details>
           <details>
             <summary><span class="fr">Qui perçoit les revenus des locations ?</span><span class="en">Who receives the rental income?</span></summary>
-            <p><span class="fr">Vous, directement. Les plateformes de réservation versent l'intégralité des revenus sur votre compte ; Azur Society facture ensuite sa commission de 20 %. Ce fonctionnement, plus protecteur pour vous, est au cœur de notre modèle.</span><span class="en">You do, directly. Booking platforms pay the full income into your account; Azur Society then invoices its 20% commission. This arrangement, which protects you better, is at the heart of our model.</span></p>
+            <p><span class="fr">Vous, directement. Les plateformes de réservation versent l'intégralité des revenus sur votre compte ; Azur Society facture ensuite ses honoraires de 20 %. Azur Society intervient exclusivement comme prestataire de services : nous n'encaissons jamais de fonds pour le compte de nos clients et ne détenons aucun mandat de gestion.</span><span class="en">You do, directly. Booking platforms pay the full income into your account; Azur Society then invoices its 20% service fee. Azur Society acts strictly as a service provider: we never hold funds on our clients' behalf and hold no management mandate.</span></p>
           </details>
           <details>
             <summary><span class="fr">Pouvons-nous continuer à profiter de notre maison ?</span><span class="en">Can we still enjoy our house?</span></summary>
@@ -618,7 +664,7 @@
           <div class="field">
             <label for="f-service"><span class="fr">Service envisagé</span><span class="en">Service considered</span></label>
             <select id="f-service" name="service">
-              <option data-fr="Gestion locative saisonnière" data-en="Seasonal rental management">Gestion locative saisonnière</option>
+              <option data-fr="Location saisonnière" data-en="Seasonal rentals">Location saisonnière</option>
               <option data-fr="Intendance de résidence" data-en="Residence caretaking">Intendance de résidence</option>
               <option data-fr="Services sur mesure" data-en="Bespoke services">Services sur mesure</option>
               <option data-fr="Je ne sais pas encore" data-en="I don't know yet">Je ne sais pas encore</option>
@@ -646,9 +692,10 @@
         <line x1="58" y1="142" x2="122" y2="142" stroke="#6CB2D9" stroke-width="4"/>
       </svg>
       <p class="name">Azur Society</p>
-      <p><span class="fr">Gestion privée de propriétés — Mougins · Cannes · Côte d'Azur</span><span class="en">Private property management — Mougins · Cannes · French Riviera</span></p>
+      <p><span class="fr">Conciergerie &amp; intendance — Mougins · Cannes · Côte d'Azur</span><span class="en">Concierge &amp; estate care — Mougins · Cannes · French Riviera</span></p>
     </div>
     <div>
+      <p><span class="fr">Azur Society est un prestataire de services aux propriétaires : les revenus de location sont versés directement aux propriétaires par les plateformes de réservation.</span><span class="en">Azur Society is a service provider to homeowners: rental income is paid directly to owners by the booking platforms.</span></p>
       <p><span class="fr">Immatriculation en cours · Assurance responsabilité civile professionnelle</span><span class="en">Registration in progress · Professional liability insurance</span></p>
       <p><span class="fr">© 2026 Azur Society — Mentions légales · Politique de confidentialité</span><span class="en">© 2026 Azur Society — Legal notice · Privacy policy</span></p>
       <p style="opacity:.7;"><span class="fr">Vidéo : Mixkit · Photos : Unsplash</span><span class="en">Video: Mixkit · Photos: Unsplash</span></p>
@@ -661,7 +708,7 @@
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Azur Society",
-  "description": "Conciergerie et gestion locative de villas à Mougins, Cannes, Le Cannet, Mouans-Sartoux et Valbonne : location saisonnière (Airbnb, Booking), intendance de résidence secondaire, entretien de piscine et jardin. Commission de 20 % sans frais fixes.",
+  "description": "Conciergerie de villas à Mougins, Cannes, Le Cannet, Mouans-Sartoux et Valbonne : location saisonnière (Airbnb, Booking), intendance de résidence secondaire, entretien de piscine et jardin. Honoraires de 20 % sans frais fixes.",
   "url": "https://nels763.github.io/azur-society/",
   "telephone": "+33613510915",
   "email": "contact.azursociety@gmail.com",
@@ -676,8 +723,8 @@
   let lang = 'fr';
   try { lang = localStorage.getItem('azur-lang') || 'fr'; } catch (e) {}
   const TITLES = {
-    fr: "Azur Society — Gestion privée de propriétés · Mougins & Cannes",
-    en: "Azur Society — Private property management · Mougins & Cannes"
+    fr: "Azur Society — Conciergerie de propriétés · Mougins & Cannes",
+    en: "Azur Society — Private property concierge · Mougins & Cannes"
   };
   function setLang(l) {
     lang = l;
