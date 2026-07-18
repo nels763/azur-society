@@ -897,10 +897,18 @@
       hv.load();
       hv.play().catch(() => {});
     }
-    /* Fondu : la vidéo n'apparaît que lorsqu'elle joue réellement — plus de flash */
+    /* Fondu : la vidéo apparaît dès qu'elle joue réellement — détection multi-signaux */
     const reveal = () => hv.classList.add('playing');
     hv.addEventListener('playing', reveal, { once: true });
-    if (!hv.paused && hv.readyState >= 3) reveal();
+    hv.addEventListener('timeupdate', function tu() {
+      if (hv.currentTime > 0) { reveal(); hv.removeEventListener('timeupdate', tu); }
+    });
+    let tries = 0;
+    const poll = setInterval(() => {
+      if (!hv.paused && hv.currentTime > 0) { reveal(); clearInterval(poll); }
+      else if (++tries > 80) { clearInterval(poll); }
+    }, 100);
+    hv.play().catch(() => {});
   })();
 
   /* ----- Langue ----- */
