@@ -162,7 +162,11 @@
   }
   .hero-bg { position: absolute; inset: 0; }
   .hero-bg img, .hero-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .hero-bg video { animation: heroZoom 26s ease-in-out infinite alternate; }
+  .hero-bg video {
+    animation: heroZoom 26s ease-in-out infinite alternate;
+    opacity: 0; transition: opacity 1.4s ease;
+  }
+  .hero-bg video.playing { opacity: 1; }
   @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
   @media (prefers-reduced-motion: reduce) { .hero-bg video { display: none; } }
   .hero-bg::after {
@@ -882,16 +886,21 @@
 }
 </script>
 <script>
-  window.HERO_VIDEO_MOBILE = 'assets/villa-pool-mobile.mp4';
   /* ----- Vidéo allégée sur mobile (définie uniquement sur la version déployée) ----- */
+  window.HERO_VIDEO_MOBILE = 'assets/villa-pool-mobile.mp4';
   (function () {
     const hv = document.querySelector('.hero-bg video');
-    if (hv && window.HERO_VIDEO_MOBILE && window.matchMedia('(max-width: 640px)').matches) {
+    if (!hv) return;
+    if (window.HERO_VIDEO_MOBILE && window.matchMedia('(max-width: 640px)').matches) {
       const s = hv.querySelector('source');
       s.src = window.HERO_VIDEO_MOBILE;
       hv.load();
       hv.play().catch(() => {});
     }
+    /* Fondu : la vidéo n'apparaît que lorsqu'elle joue réellement — plus de flash */
+    const reveal = () => hv.classList.add('playing');
+    hv.addEventListener('playing', reveal, { once: true });
+    if (!hv.paused && hv.readyState >= 3) reveal();
   })();
 
   /* ----- Langue ----- */
